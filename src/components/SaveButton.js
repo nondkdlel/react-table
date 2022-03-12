@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const SaveBtn = styled.button`
   display: inline-block;
@@ -15,18 +16,44 @@ const SaveBtn = styled.button`
   color: #fff;
 `;
 
-function SaveButton() {
+function SaveButton({ method = 'post', id }) {
   const navigate = useNavigate();
+  const updateTitle = useSelector((state) => state.writeForm.title);
+  const updateWriter = useSelector((state) => state.writeForm.writer);
+  const updateContent = useSelector((state) => state.writeForm.content);
 
-  function SaveDone () {
+  async function SaveDone() {
+    const today = new Date();
 
-    axios.post('https://crudcrud.com/api/3ed8b0fbf69f4d759ac77e3a6e59fd90/unicorns',{
-      
+    const post = {
+      title: updateTitle,
+      writer: updateWriter,
+      content: updateContent,
+    };
+    let url = 'https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns';
+    if (method === 'put') {
+      post.update = today;
+      url = `https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns/${id}`;
+    }
+    if (method === 'post') {
+      post.date = today;
+    }
+
+    await axios[method](url, post, {
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+      },
     })
-    navigate('/');
+    .then((res) => {
+      console.log(res);
+      navigate('/');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
-  return <SaveBtn onClick={SaveDone}>작성 완료</SaveBtn>
+  return <SaveBtn onClick={SaveDone}>작성 완료</SaveBtn>;
 }
 
 export default SaveButton;

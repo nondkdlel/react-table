@@ -5,14 +5,14 @@ import { BtnArea } from './styles';
 import UpdateButton from '../components/UpdateButton';
 
 function Main() {
-  return(
+  return (
     <>
     <Table />
     <BtnArea>
-      <UpdateButton />  
-    </BtnArea>    
+      <UpdateButton />
+    </BtnArea>
     </>
-  )
+  );
 }
 
 export default Main;

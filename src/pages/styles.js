@@ -29,7 +29,7 @@ export const FormLayout = styled.table`
   textarea {
     height: 190px;
   }
-`
+`;
 
 export const BtnArea = styled.div`
   text-align: right;
@@ -47,4 +47,4 @@ export const BtnArea = styled.div`
 
 export const AlignCenter = styled.div`
   text-align: center;
-`
+`;

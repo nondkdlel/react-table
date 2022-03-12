@@ -6,13 +6,12 @@ import { AlignCenter } from './styles';
 import WriteFrom from '../components/WriteFrom';
 import SaveButton from '../components/SaveButton';
 
-
 const Thead = styled.h1`
   font-size: 22px;
   text-align: center;
-`
+`;
 
-function Write(){
+function Write() {
   return (
     <>
     <Thead>작성하기</Thead>
@@ -21,7 +20,7 @@ function Write(){
       <SaveButton />
     </AlignCenter>
     </>
-  )
+  );
 }
 
 export default Write;

@@ -1,4 +1,6 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const From = styled.div`
@@ -35,33 +37,48 @@ const Formfield = styled.div`
   p {
     font-size: 16px;
   }
-`
+`;
 
-function DetailFrom(){
-  return(
+function DetailFrom() {
+  const [data, setData] = useState(null);
+  const { search } = useLocation();
+  const id = search.replace('?', '').split('=')[1];
+
+  async function getDetail() {
+    await axios.get(`https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns/${id}`)
+    .then((res) => {
+      console.log(res);
+      setData(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    getDetail();
+  }, []);
+
+  return (
     <From>
       <Head>
-        <h1>제목을 입력하세요1.</h1>
+        <h1>{ data && data.title ? data.title : '' }</h1>
         <FormInfo>
           <ul>
             <li>작성자</li>
-            <li>admin1</li>
+            <li>{ data && data.writer ? data.writer : '' }</li>
           </ul>
           <ul>
             <li>작성일</li>
-            <li>2022/01/01</li>
+            <li>{ data && data.date ? data.date : '' }</li>
           </ul>
         </FormInfo>
         </Head>
         <Formfield>
-          <p>내용이 보여지는 곳입니다.</p>
-          <p>내용이 보여지는 곳입니다.</p>
-          <p>내용이 보여지는 곳입니다.</p>
-          <p>내용이 보여지는 곳입니다.</p>
-          <p>내용이 보여지는 곳입니다.</p>
+          <pre>{ data && data.content ? data.content : '' }</pre>
         </Formfield>
     </From>
-  )
+  );
 }
 
 export default DetailFrom;

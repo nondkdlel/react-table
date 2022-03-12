@@ -10,7 +10,7 @@ const UpdateBtn = styled.button`
 `;
 
 function UpdateButton() {
-  return <Link to='/write'><UpdateBtn>글 작성하기</UpdateBtn></Link>
+  return <Link to='/write'><UpdateBtn>글 작성하기</UpdateBtn></Link>;
 }
 
 export default UpdateButton;

@@ -1,0 +1,42 @@
+module.exports = {
+  env: { browser: true, es6: true, node: true },
+  parserOptions: {
+    ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: 'module',
+    allowImportExportEverywhere: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'airbnb-base',
+    // "plugin:jsx-a11y/recommended",
+    // "plugin:react/recommended"
+  ],
+  rules: {
+    'no-param-reassign': ['error', { props: false }],
+    indent: 0,
+    'linebreak-style': 'off',
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'no-use-before-define': 'off',
+    camelcase: 'off',
+    'import/no-unresolved': 'off',
+    'implicit-arrow-linebreak': 0,
+    'function-paren-newline': 0,
+    'no-console': 'off',
+    'max-len': 'off',
+    'react/prop-types': 'off',
+    'jsx-a11y/no-onchange': 'off',
+    'object-curly-newline': 'off',
+    'operator-linebreak': 'off',
+    'import/prefer-default-export': 0,
+    curly: 'off',
+    'nonblock-statement-body-position': 'off',
+    'no-underscore-dangle': 'off',
+    'no-nested-ternary': 'off',
+    'eol-last': 'off',
+    'no-unused-vars': 'off',
+  },
+};

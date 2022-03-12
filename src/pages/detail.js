@@ -5,8 +5,8 @@ import EditButton from '../components/EditButton';
 import DeleteButton from '../components/DeleteButton';
 import { BtnArea } from './styles';
 
-function Detail(){
-  return(
+function Detail() {
+  return (
     <>
     <DetailFrom />
     <BtnArea>
@@ -14,7 +14,7 @@ function Detail(){
       <DeleteButton />
     </BtnArea>
     </>
-  )
+  );
 }
 
 export default Detail;

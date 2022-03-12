@@ -1,11 +1,9 @@
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Axios() {
-
   const [data, setData] = useState(null);
-  
+
   // useEffect(()=> {
   //   axios
   //     .post('https://crudcrud.com/api/3ed8b0fbf69f4d759ac77e3a6e59fd90/unicorns', {
@@ -67,23 +65,19 @@ function Axios() {
   //   })
   // }, []);
 
-  useEffect(() => {
-    axios
-      .get('https://crudcrud.com/api/3ed8b0fbf69f4d759ac77e3a6e59fd90/unicorns')
-      .then((res) => {
-        setData(res.data);
-        console.log(setData);
-  
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  
-    },[])
+  // useEffect(() => {
+  //   axios
+  //     .get('https://crudcrud.com/api/3ed8b0fbf69f4d759ac77e3a6e59fd90/unicorns')
+  //     .then((res) => {
+  //       setData(res.data);
+  //       console.log(setData);
 
-} 
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+
+  //   },[])
+}
 
 export default Axios;
-
-
-
