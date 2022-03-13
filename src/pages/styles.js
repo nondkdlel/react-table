@@ -39,7 +39,7 @@ export const BtnArea = styled.div`
     display: inline-block;
     vertical-align: middle;
     font-size: 16px;
-    padding: 7px 12px;
+    padding: 10px 15px;
     border-radius: 4px;
     font-weight: 500;
   }
@@ -47,4 +47,7 @@ export const BtnArea = styled.div`
 
 export const AlignCenter = styled.div`
   text-align: center;
+`;
+export const AlignRight = styled.div`
+  text-align: right;
 `;

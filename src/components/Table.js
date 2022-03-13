@@ -65,7 +65,7 @@ console.log(data);
                 <td><Link to={`/detail?id=${a._id}`}>{ i }</Link></td>
                 <td><Link to={`/detail?id=${a._id}`}>{ a.title }</Link></td>
                 <td><Link to={`/detail?id=${a._id}`}>{ a.writer }</Link></td>
-                <td><Link to={`/detail?id=${a._id}`}>{ a.date }</Link></td>
+                <td><Link to={`/detail?id=${a._id}`}>{ a.date } { a.update }</Link></td>
              </tr>
             ))
           )

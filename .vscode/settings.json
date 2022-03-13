@@ -1,4 +1,5 @@
 {
-  "materialTheme.accent": "Lime",
-  "editor.tabSize": 2
+  "materialTheme.accent": "Cyan",
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Community Material Theme Ocean"
 }

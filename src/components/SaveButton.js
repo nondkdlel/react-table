@@ -8,7 +8,7 @@ const SaveBtn = styled.button`
   display: inline-block;
   vertical-align: middle;
   font-size: 16px;
-  padding: 7px 12px;
+  padding: 10px 15px;
   border-radius: 4px;
   font-weight: 500;
   background-color: orange;
@@ -24,6 +24,11 @@ function SaveButton({ method = 'post', id }) {
 
   async function SaveDone() {
     const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const date = today.getDate();
+    const todayFormat = `${year}/${month}/${date}`;
+    // console.log(todayFormat);
 
     const post = {
       title: updateTitle,
@@ -32,11 +37,11 @@ function SaveButton({ method = 'post', id }) {
     };
     let url = 'https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns';
     if (method === 'put') {
-      post.update = today;
+      post.update = todayFormat;
       url = `https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns/${id}`;
     }
     if (method === 'post') {
-      post.date = today;
+      post.date = todayFormat;
     }
 
     await axios[method](url, post, {
