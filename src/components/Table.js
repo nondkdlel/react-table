@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import Axios from '../data';
 import axios from 'axios';
+
+import { apiThunk } from '../reducer';
 
 const TableLayout = styled.table`
   tr {
@@ -21,24 +23,13 @@ const TableLayout = styled.table`
 `;
 
 function Table() {
-  const [data, setData] = useState(null);
-
-  async function getData() {
-    await axios
-      .get('https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns')
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  const dispatch = useDispatch();
+  const keyword = useSelector((state) => state.keyword.keyword);
+  const data = useSelector((state) => state.mainData.list);
 
   useEffect(() => {
-    getData();
-   }, []);
-console.log(data);
+    dispatch(apiThunk());
+   }, [dispatch]);
 
   return (
     <TableLayout>
@@ -60,7 +51,7 @@ console.log(data);
         {
           data && data.length > 0
           ? (
-            data.map((a, i) => (
+            data.filter((item) => item.title.indexOf(keyword) > -1).map((a, i) => (
               <tr key={i}>
                 <td><Link to={`/detail?id=${a._id}`}>{ i }</Link></td>
                 <td><Link to={`/detail?id=${a._id}`}>{ a.title }</Link></td>

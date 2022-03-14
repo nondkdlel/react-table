@@ -22,7 +22,7 @@ const PageNum = styled.div`
   }
 `;
 
-function Pagenation() {
+function Pagination() {
   return (
     <PageNum>
       <button className='on'>1</button>
@@ -34,4 +34,4 @@ function Pagenation() {
   );
 }
 
-export default Pagenation;
+export default Pagination;

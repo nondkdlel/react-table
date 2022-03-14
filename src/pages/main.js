@@ -6,7 +6,7 @@ import SortSelect from '../components/SortSelect';
 import Table from '../components/Table';
 import UpdateButton from '../components/UpdateButton';
 import SearchBox from '../components/SearchBox';
-import Pagenation from '../components/Pagenation';
+import Pagination from '../components/Pagination';
 
 function Main() {
   return (
@@ -16,7 +16,7 @@ function Main() {
     <BtnArea>
     <UpdateButton />
     <SearchBox />
-    <Pagenation />
+    <Pagination />
     </BtnArea>
     </>
   );

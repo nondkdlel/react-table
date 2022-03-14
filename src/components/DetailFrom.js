@@ -45,7 +45,7 @@ function DetailFrom() {
   const id = search.replace('?', '').split('=')[1];
 
   async function getDetail() {
-    await axios.get(`https://crudcrud.com/api/2ae5643d46754b858d0330b866f81be2/unicorns/${id}`)
+    await axios.get(`https://crudcrud.com/api/59f649367af44f049dde37384150d745/unicorns/${id}`)
     .then((res) => {
       console.log(res);
       setData(res.data);
