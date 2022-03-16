@@ -1,7 +1,8 @@
 import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-// import { useDispatch } from 'react-redux';
-// import { apiThunk } from '../reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { mainDataSlice } from '../reducer';
 
 import { AlignRight } from '../pages/styles';
 
@@ -13,14 +14,15 @@ const Selector = styled.select`
 `;
 
 function SortSelect() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  // const navi = useNavigate();
+  const data = useSelector((state) => state.mainData.list);
   const onChangeSort = (e) => {
     if (e.target.value === 'changeTitleSort') {
-      console.log(e.target.value);
-      // dispatch(apiThunk());
+      dispatch(mainDataSlice.actions.numSort(e.target.value));
+      console.log(data);
     }
   };
-
   return (
     <AlignRight>
       <Selector onChange={ onChangeSort }>

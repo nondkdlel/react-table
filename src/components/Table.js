@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import Axios from '../data';
-import axios from 'axios';
+import styled from 'styled-components';
 
-import { apiThunk } from '../reducer';
+import { apiThunk, pageNaviSlice } from '../reducer';
 
 const TableLayout = styled.table`
   tr {
@@ -27,6 +25,11 @@ function Table() {
   const keyword = useSelector((state) => state.keyword.keyword);
   const data = useSelector((state) => state.mainData.list);
 
+  const defaultPage = useSelector((state) => state.pageNavi.page);
+  const pageSize = 5;
+  const start = (defaultPage - 1) * 5;
+  const end = defaultPage * pageSize;
+  const resultData = data.slice(start, end).filter((item) => item.title.includes(keyword) === true);
   useEffect(() => {
     dispatch(apiThunk());
    }, [dispatch]);
@@ -51,7 +54,7 @@ function Table() {
         {
           data && data.length > 0
           ? (
-            data.filter((item) => item.title.indexOf(keyword) > -1).map((a, i) => (
+            resultData.map((a, i) => (
               <tr key={i}>
                 <td><Link to={`/detail?id=${a._id}`}>{ i }</Link></td>
                 <td><Link to={`/detail?id=${a._id}`}>{ a.title }</Link></td>

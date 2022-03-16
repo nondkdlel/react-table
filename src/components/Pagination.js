@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { pageNaviSlice } from '../reducer';
 
 const PageNum = styled.div`
   text-align: center;
@@ -23,13 +25,27 @@ const PageNum = styled.div`
 `;
 
 function Pagination() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.mainData.list);
+  const defaultPage = useSelector((state) => state.pageNavi.page);
+  const pageSize = 5;
+  const lastPage = Math.ceil(data.length / pageSize);
+
+  const arr = Array.from(Array(lastPage).keys());
+  console.log(arr);
+  const pagi = (num) => {
+    dispatch(pageNaviSlice.actions.setPage(num));
+  };
   return (
     <PageNum>
-      <button className='on'>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
+      {
+        arr.map((a, i) => (
+          <button
+          key={ i }
+          className={ defaultPage === (a + 1) ? 'on' : null }
+          onClick={() => pagi(a + 1)}>{ a + 1 }</button>
+        ))
+      }
     </PageNum>
   );
 }

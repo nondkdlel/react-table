@@ -19,14 +19,10 @@ const Thead = styled.h1`
 function Edit() {
   const { search } = useLocation();
   const id = search.replace('?', '').split('=')[1];
-
-  const title = useSelector((state) => state.writeForm.title);
-  const writer = useSelector((state) => state.writeForm.writer);
-  const content = useSelector((state) => state.writeForm.content);
   const dispatch = useDispatch();
 
   async function getDetail() {
-    await axios.get(`https://crudcrud.com/api/59f649367af44f049dde37384150d745/unicorns/${id}`)
+    await axios.get(`https://crudcrud.com/api/00b7be8bd7924e45a811ca7d9f1db4ed/unicorns/${id}`)
     .then((res) => {
       console.log(res);
       dispatch(writeFormSlice.actions.setTitle(res.data.title));
