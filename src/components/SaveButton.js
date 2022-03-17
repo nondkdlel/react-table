@@ -23,22 +23,21 @@ function SaveButton({ method = 'post', id }) {
   const updateContent = useSelector((state) => state.writeForm.content);
 
   async function SaveDone() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const date = today.getDate();
+    const today = new Date().toISOString();
+    const year = today.substring(0, 4);
+    const month = today.substring(5, 7);
+    const date = today.substring(8, 10);
     const todayFormat = `${year}/${month}/${date}`;
-    // console.log(todayFormat);
 
     const post = {
       title: updateTitle,
       writer: updateWriter,
       content: updateContent,
     };
-    let url = 'https://crudcrud.com/api/00b7be8bd7924e45a811ca7d9f1db4ed/unicorns';
+    let url = 'https://crudcrud.com/api/851af311e20445928461272b2d866b56/unicorns';
     if (method === 'put') {
       post.update = todayFormat;
-      url = `https://crudcrud.com/api/00b7be8bd7924e45a811ca7d9f1db4ed/unicorns/${id}`;
+      url = `https://crudcrud.com/api/851af311e20445928461272b2d866b56/unicorns/${id}`;
     }
     if (method === 'post') {
       post.date = todayFormat;
@@ -50,11 +49,11 @@ function SaveButton({ method = 'post', id }) {
       },
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       navigate('/');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

@@ -32,7 +32,6 @@ function Pagination() {
   const lastPage = Math.ceil(data.length / pageSize);
 
   const arr = Array.from(Array(lastPage).keys());
-  console.log(arr);
   const pagi = (num) => {
     dispatch(pageNaviSlice.actions.setPage(num));
   };

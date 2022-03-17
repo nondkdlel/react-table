@@ -34,7 +34,7 @@ const mainInitialState = {
 };
 
 export const apiThunk = createAsyncThunk('apis', async () => {
-  const res = await axios.get('https://crudcrud.com/api/00b7be8bd7924e45a811ca7d9f1db4ed/unicorns');
+  const res = await axios.get('https://crudcrud.com/api/851af311e20445928461272b2d866b56/unicorns');
   return res.data;
 });
 
@@ -42,19 +42,51 @@ export const mainDataSlice = createSlice({
   name: 'mainData',
   initialState: mainInitialState,
   reducers: {
-    numSort: (state, action) => {
-      const sortType = action.payload;
-      // console.log(sortType);
+    titleSort: (state, action) => {
+      const tmpDataList = JSON.parse(JSON.stringify(action.payload));
+
+        for (let i = 1; i < tmpDataList.length; i += 1) {
+          const cur = tmpDataList[i];
+          let left = i - 1;
+          while (left >= 0 && tmpDataList[left].title > cur.title) {
+            tmpDataList[left + 1] = tmpDataList[left];
+            left -= 1;
+          }
+          tmpDataList[left + 1] = cur;
+        }
+      state.list = tmpDataList;
+    },
+    writerSort: (state, action) => {
+      const tmpDataList = JSON.parse(JSON.stringify(action.payload));
+      for (let i = 1; i < tmpDataList.length; i += 1) {
+        const cur = tmpDataList[i];
+        let left = i - 1;
+        while (left >= 0 && tmpDataList[left].writer > cur.writer) {
+          tmpDataList[left + 1] = tmpDataList[left];
+          left -= 1;
+        }
+        tmpDataList[left + 1] = cur;
+      }
+    state.list = tmpDataList;
+    },
+    dateSort: (state, action) => {
+      const tmpDataList = JSON.parse(JSON.stringify(action.payload));
+      for (let i = 1; i < tmpDataList.length; i += 1) {
+        const cur = tmpDataList[i];
+        let left = i - 1;
+        while (left >= 0 && tmpDataList[left].date > cur.date) {
+          tmpDataList[left + 1] = tmpDataList[left];
+          left -= 1;
+        }
+        tmpDataList[left + 1] = cur;
+      }
+    state.list = tmpDataList;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(apiThunk.fulfilled, (state, action) => {
       const dataList = action.payload;
       state.list = dataList;
-      // console.log(dataList);
-      // dataList.forEach((data) => {
-      //   data.isVisible = false;
-      // });
     });
   },
 });

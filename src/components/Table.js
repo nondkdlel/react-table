@@ -29,7 +29,7 @@ function Table() {
   const pageSize = 5;
   const start = (defaultPage - 1) * 5;
   const end = defaultPage * pageSize;
-  const resultData = data.slice(start, end).filter((item) => item.title.includes(keyword) === true);
+  const resultData = data.filter((item) => item.title.includes(keyword) === true).slice(start, end);
   useEffect(() => {
     dispatch(apiThunk());
    }, [dispatch]);
