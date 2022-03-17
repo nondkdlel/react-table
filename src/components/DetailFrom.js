@@ -47,11 +47,11 @@ function DetailFrom() {
   async function getDetail() {
     await axios.get(`https://crudcrud.com/api/851af311e20445928461272b2d866b56/unicorns/${id}`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       setData(res.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 

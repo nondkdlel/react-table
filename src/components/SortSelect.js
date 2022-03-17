@@ -15,7 +15,6 @@ const Selector = styled.select`
 
 function SortSelect() {
   const dispatch = useDispatch();
-  // const navi = useNavigate();
   const data = useSelector((state) => state.mainData.list);
   const onChangeSort = (e) => {
     if (data && data.length > 0) {
@@ -34,6 +33,7 @@ function SortSelect() {
   return (
     <AlignRight>
       <Selector onChange={ onChangeSort }>
+
         <option value='changeTitleSort'>제목순</option>
         <option value='changeWriterSort'>작성자순</option>
         <option value='changeDateSort'>날짜순</option>

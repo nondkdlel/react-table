@@ -24,13 +24,13 @@ function Edit() {
   async function getDetail() {
     await axios.get(`https://crudcrud.com/api/851af311e20445928461272b2d866b56/unicorns/${id}`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch(writeFormSlice.actions.setTitle(res.data.title));
       dispatch(writeFormSlice.actions.setWriter(res.data.writer));
       dispatch(writeFormSlice.actions.setContent(res.data.content));
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
   }
 
